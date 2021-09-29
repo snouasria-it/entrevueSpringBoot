@@ -2,13 +2,15 @@
 
 ## Commentaires
 
-Votre objectif pour ce test est de créer un API Rest avec Java et Spring Boot
-pour ajouter et obtenir les détails d'un film.
-
-Vous devez créer 2 endpoints dans l'API:
-
-- Un GET pour obtenir un film par ID dans la base de données en mémoire (H2).
-- Un POST pour ajouter un film dans la base de données en mémoire (H2).
+- J'ai utilisé un Dto(exemple de bonne pratique) pour decopouler le model de l'Api de la couche de persistance (entités), bien que les données soient identique. 
+- One-to-many est déduite des ids dans les examples du .MD, bien qu'un many-to-many(an actor could participate in multiple films) aurait peut-etre été plus judicieux.
+- Je n'ai testé qu'une seule méthode du Repo SpringDataJpa à titre d'exemple car je n'ai pas crée de methode custom.
+- J'ai pas utilisé de profils pour les differents environnements (dev, test, int, qa, prod)
+- Le FilmServiceTest est un test unitiare classique avec isolatiton du composant testé avec des dépendances mockés.
+- Le FilmControllerTest test le controlleur avec les vrais dépendances(sans mocks et avec un context complet) dans un environnement similaire à la prod.  C'est un test
+d'intégration.
+- Le fait de charger un context entier rend l'execution des tests plus lente, de même que l'utilisation de @DirtiesContext et @MockBean.
+- J'ai modifié la version de Gradle(à cause d'un conflit avec Intellij) 
 
 ## Validation du Post dans Postman
 
